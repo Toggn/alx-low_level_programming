@@ -1,12 +1,13 @@
 #include <main.h>
+
 /**
- * main - A program that print _putchar
+ * main - print _putchar
  *
  * Return : 0 (success)
  *
 */
-  
-int main(void)
+
+int main (void)
 {
 _putchar('_');
 _putchar('p');
@@ -17,5 +18,6 @@ _putchar('h');
 _putchar('a');
 _putchar('r');
 
-return(0);
+return (0);
 }
+
