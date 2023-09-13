@@ -1,16 +1,35 @@
-#include <main.h>
+#include "main.h"
 
 /**
- * print_alphabet : using _putchar funtion
+ * print_alphabet - Function to print the alphabet from 'a' to 'z' with a newline at the end
  *
-*/
+ * Return: Nothing (void)
+ */
+#include "main.h"
+
+/**
+ * main - check the code
+ *
+ * Return: Always 0.
+ */
+int main(void)
+{
+print_alphabet();
+return (0);
+}
+
+
 
 void print_alphabet(void)
-{
-int ch;
-for(ch = 'a'; ch<= 'z'; ch++)
-	_putchar(ch);
-   _putchar('\n);
 
+{
+char letter = 'a';
+
+while (letter <= 'z')
+{
+_putchar(letter);
+letter++;
+}
+_putchar('\n'); 
 }
 
