@@ -1,36 +1,52 @@
 #include <stdio.h>
-#include <stdbool.h>
-#include <string.h>
 #include "main.h"
 /**
- * is_palindrome - Checks if a string is a palindrome.
- *
- * This function checks whether the input string is a palindrome,
- * meaning it reads the same forwards and backwards.
- *
- * @s: Pointer to the input string.
- *
- * Returns: 1 if the input string is a palindrome, 0 otherwise.
+ * last_index - returns the last index of a string (counts the null char)
+ * @s: pointer the string
+ * Return: int
  */
-int is_palindrome(char *s)
+int is_palindrome(char *s);
+int check(char *s, int start, int end, int pair);
+int last_index(char *s)
 {
-int length = strlen(s);
-int i, j;
-    
-if (length == 0)
-return (1);
+int n = 0;
 
-for (i = 0, j = length - 1; i < j; i++, j--)
-{
+if (*s > '\0')
+	n += last_index(s + 1) + 1;
 
-while (i < j && !isalnum(s[i]))
-i++;
-while (i < j && !'isalnum'(s[j]))
-j--;
-
-if ('tolower'(s[i]) != tolower(s[j]))
-return (0);  
+return (n);
 }
 
-return (1);  
+/**
+ * is_palindrome - check if a string is a palindrome
+ * @s: string to check
+ * Return: 0 or 1
+ */
+
+int is_palindrome(char *s)
+{
+int end = last_index(s);
+
+return (check(s, 0, end - 1, end % 2));
+}
+
+/**
+ * check - checker for the palindrome
+ * @s: string
+ * @start: int moves from right to left
+ * @end: int moves from left to right
+ * @pair: int
+ * Return: 0 or 1
+ */
+
+
+int check(char *s, int start, int end, int pair)
+{
+
+if ((start == end && pair != 0) || (start == end + 1 && pair == 0))
+	return (1);
+else if (s[start] != s[end])
+	return (0);
+else
+	return (check(s, start + 1, end - 1, pair));
 }

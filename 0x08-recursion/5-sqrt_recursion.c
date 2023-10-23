@@ -1,29 +1,33 @@
 #include <stdio.h>
 #include "main.h"
+
 /**
- * _sqrt_recursion - Calculates the natural square root of a number.
+ * my_sqrt_recursion - This is my my_sqrt_recursion
+ *                     function about the square root
+ * @a: The entry is equal to n, of the before function
+ * @b: This is the sum
  *
- * This function calculates the natural square root of a non-negative integer.
- * If the input number does not have a natural square root, the function returns -1.
+ * Return: This is the result
+ */
+int my_sqrt_recursion(int a, int b)
+{
+	if (a == (b * b))
+		return (b);
+	else if ((b * b) >= a)
+		return (-1);
+	else
+		return (my_sqrt_recursion(a, b + 1));
+}
+
+/**
+ * _sqrt_recursion - This is my first function
+ * @n: This is my value
  *
- * @n: The input number.
- *
- * Returns: The natural square root of the input number, or -1 if n does not have a natural square root.
+ * Return: This is my result of the function my_sqrt_recursion
  */
 int _sqrt_recursion(int n)
 {
-if (n == 0)
-return (0);
-else if (n < 0)
-return (-1);
-else {
-int i = 1;
-while (i * i <= n)
-{
-if (i * i == n)
-return (i);
-i++;
-}
-return _sqrt_recursion(n - 1);  
-}
+	if (n <= 0)
+		return (-1);
+	return (my_sqrt_recursion(n, 0));
 }
