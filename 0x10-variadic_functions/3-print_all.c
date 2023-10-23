@@ -1,52 +1,51 @@
-#include <stdarg.h>
-#include <stdio.h>
 #include "variadic_functions.h"
-
+#include <stdio.h>
+/**
+ * print_all - prints anything.
+ * @format: a list of types of arguments passed to the function.
+ *
+ * Return: no return.
+ */
 void print_all(const char * const format, ...)
 {
-va_list args;
-const char *ptr = format;
-int int_arg;
-char char_arg;
-float float_arg;
-char *str_arg;
+	va_list valist;
+	unsigned int i = 0, j, c = 0;
+	char *str;
+	const char t_arg[] = "cifs";
 
-va_start(args, format);
-
-while (*ptr)
-{
-if (*ptr == 'c')
-{
-char_arg = va_arg(args, int);
-printf("%c", char_arg);
+	va_start(valist, format);
+	while (format && format[i])
+	{
+		j = 0;
+		while (t_arg[j])
+		{
+			if (format[i] == t_arg[j] && c)
+			{
+				printf(", ");
+				break;
+			} j++;
+		}
+		switch (format[i])
+		{
+		case 'c':
+			printf("%c", va_arg(valist, int)), c = 1;
+			break;
+		case 'i':
+			printf("%d", va_arg(valist, int)), c = 1;
+			break;
+		case 'f':
+			printf("%f", va_arg(valist, double)), c = 1;
+			break;
+		case 's':
+			str = va_arg(valist, char *), c = 1;
+			if (!str)
+			{
+				printf("(nil)");
+				break;
+			}
+			printf("%s", str);
+			break;
+		} i++;
+	}
+	printf("\n"), va_end(valist);
 }
-else if (*ptr == 'i')
-{
-int_arg = va_arg(args, int);
-printf("%d", int_arg);
-}
-else if (*ptr == 'f')
-{
-float_arg = va_arg(args, double);
-printf("%f", float_arg);
-}
-else if (*ptr == 's')
-{
-str_arg = va_arg(args, char *);
-if (str_arg == NULL)
-printf("(nil)");
-else
-printf("%s", str_arg);
-}
-
-ptr++;
-
-
-if (*ptr)
-printf(", ");
-}
-
-printf("\n");
-va_end(args);
-}
-
